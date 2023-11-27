@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MainList from "./views/MainList.jsx";
+import Recipe from "./views/Recipe.jsx";
+import Favourites from "./views/Favourites.jsx";
+import Navbar from "./components/Navbar.jsx";
+import injectContext from "./store/context.js";
+import Welcome from "./views/Welcome.jsx";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <BrowserRouter>
+       <Navbar/>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/list/:startingLetter" element={<MainList />} />
+          <Route path="/recipe/:mealID" element={<Recipe />} />
+          <Route path="/favourites" element={<Favourites />} />
+          <Route render={() => <h1>Not found!</h1>} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
 
-export default App;
+export default injectContext(App);
