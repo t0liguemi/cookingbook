@@ -20,9 +20,8 @@ const Recipe = () => {
                   mealCategory={meal.strCategory}
                   mealArea={meal.strArea}
                   mealID={meal.idMeal}/>
-        
         <small className="text-body-secondary">
-          {meal.strArea} {meal.strTags != null ? "-" : ""} {meal.strTags.replaceAll(",", ", ")}
+          {meal.strArea} {meal.strTags != null ? "-" : ""} {meal.strTags != null ?meal.strTags.replaceAll(",", ", "):""}
         </small>
       </div>
       <div className="container d-flex">
